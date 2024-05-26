@@ -1,7 +1,7 @@
 import { createContext, useContext, useState } from 'react';
 import { trendingMovies } from '../API/Api';
-import { fetchCatPics } from '../API/Api';
-import { fetchMoreCatPics } from '../API/Api';
+import { fetchDogPics } from '../API/Api';
+import { fetchMoreDogPics } from '../API/Api';
 import { movieSearchFinder } from '../API/Api';
 import { movieDetailsFinder } from '../API/Api';
 import { movieReviewsFinder } from '../API/Api';
@@ -10,7 +10,7 @@ import { moreMovieSearchFinder } from '../API/Api';
 import { useEffect } from 'react';
 import Recommendations from '../API/Recommendations';
 import { fetchBreeds } from '../API/Api';
-import { fetchCatByBreed } from '../API/Api';
+import { fetchDogByBreed } from '../API/Api';
 import Notiflix from 'notiflix';
 
 const UserContext = createContext();
@@ -34,7 +34,6 @@ export const UserProvider = ({ children }) => {
   const [breedList, setBreedList] = useState([]);
   const [showCatInfo, setCatInfo] = useState();
   const [catId, setCatId] = useState();
-  const [catModal, setCatModal] = useState([]);
   const [catImage, setCatImage] = useState([]);
   const [initLoaded, setInitLoader] = useState();
   const [resultsAmount, setResultsAmount] = useState();
@@ -52,7 +51,7 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     setGalleryLoader(true);
-    fetchCatPics()
+    fetchDogPics()
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -67,7 +66,7 @@ export const UserProvider = ({ children }) => {
         }, 2000);
         setCatPageNums(1);
 
-        console.log(response);
+        //console.log(response);
       })
       .catch(error => {
         //setLoadingStatus(false);
@@ -85,7 +84,7 @@ export const UserProvider = ({ children }) => {
     let catStorageVar = catPageNums;
     catStorageVar += 1;
 
-    fetchMoreCatPics(catStorageVar)
+    fetchMoreDogPics(catStorageVar)
       .then(response => response.json())
       .then(response => {
         setCatPics([...response]);
@@ -174,7 +173,7 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     setLoadingStatus(true);
-    fetchCatByBreed(catId)
+    fetchDogByBreed(catId)
       .then(response => {
         if (!response.ok) {
           /*loaderMsg.classList.add('hide');
@@ -184,9 +183,9 @@ export const UserProvider = ({ children }) => {
         return response.json();
       })
       .then(response => {
-        setCatModal([...response[0].breeds]);
+        //setCatModal([...response[0].breeds]);
         setCatImage(response[0].url);
-
+        console.log(response);
         setLoadingStatus(false);
       })
       .catch(error => {
@@ -372,7 +371,6 @@ export const UserProvider = ({ children }) => {
         showCatInfo,
         handleInfoClick,
         handleInfoClose,
-        catModal,
         catImage,
         setCatMovies,
         initLoaded,

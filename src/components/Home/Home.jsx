@@ -8,7 +8,21 @@ export const Home = () => {
 
   return (
     <main>
-      <span className={css.movieGalleryLabel}>Welcome To The City Of Cats</span>
+      <span className={css.movieGalleryLabel}>
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/869/869869.png"
+          alt="Sun"
+          width="100"
+          className={css.movieGalleryAnimation}
+        />
+        <span className={css.movieGalleryTitle}>Welcome To Dog Town</span>
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/869/869869.png"
+          alt="Sun"
+          width="100"
+          className={css.movieGalleryAnimation}
+        />
+      </span>
       <h3 className={css.townOfficialsIntro}>Get to know our town Officials</h3>
       <div className={css.galleryFrame}>
         <Loader />
@@ -18,19 +32,19 @@ export const Home = () => {
               <div className={css.catOverlay}>
                 <img
                   className={css.movieImage}
-                  src="https://i.pinimg.com/564x/30/70/66/3070663d421b47cea3b0d69b8e781811.jpg"
+                  src="https://i.pinimg.com/736x/e7/9c/e0/e79ce05e10e609d9dd08ddb0f88abf27.jpg"
                   alt="Unavailable"
                 />
                 <p className={css.catDescription}>
-                  Introducing Mayor Mittens, the purrfect leader of Catville, a
-                  charming town nestled amidst rolling hills and lush greenery.
-                  With a gentle paw and a wise whisker, Mayor Mittens has been
-                  tirelessly serving the feline community, ensuring harmony and
-                  prosperity for all its whiskered residents.
+                  Presenting Mayor Goofy, the dynamic leader of Canine-Cove, a
+                  radiant metropolis brimming with canine camaraderie. With a
+                  heart as boundless as the sunny skies above, Mayor Goofy, a
+                  former Army General, has dedicated himself to uplifting the
+                  spirits of his fellow residents.
                 </p>
               </div>
               <span className={css.movieName}>
-                Mayor Mittens
+                Mayor Goofy
                 <span className={css.catName}>Town Mayor</span>
               </span>
             </Link>
@@ -41,19 +55,19 @@ export const Home = () => {
               <div className={css.catOverlay}>
                 <img
                   className={css.movieImage}
-                  src="https://i.pinimg.com/564x/33/9c/af/339caf85128cf064dc15d57333af2117.jpg"
+                  src="https://i.pinimg.com/736x/ed/bf/ad/edbfade1923c96e542899a2e921d4cea.jpg"
                   alt="Unavailable"
                 />
                 <p className={css.catDescription}>
-                  From organizing storytelling sessions for kittens to hosting
-                  book clubs for the elder cats, Mrs.Paws fosters a love of
-                  reading that spans generations. Her library is a haven where
-                  cats can curl up with a good book and escape into imaginary
-                  worlds filled with wonder and possibility.
+                  Mr. Snoopy, with his boundless energy and infectious
+                  enthusiasm, has transformed the town's library into a vibrant
+                  hub of activity. Every corner bursts with color and
+                  creativity, from the whimsical reading nooks to the
+                  interactive storytelling corners.
                 </p>
               </div>
               <span className={css.movieName}>
-                Mrs Paws
+                Mr Snoopy
                 <span className={css.catName}>Town Librarian</span>
               </span>
             </Link>
@@ -63,20 +77,22 @@ export const Home = () => {
               <div className={css.catOverlay}>
                 <img
                   className={css.movieImage}
-                  src="https://i.pinimg.com/736x/4b/08/74/4b0874bb682c162338bf0f772dc504b6.jpg"
+                  src="https://i.pinimg.com/564x/18/82/b8/1882b847e754337bc00b03ab93354252.jpg"
                   alt="Unavailable"
                 />
                 <p className={css.catDescription}>
-                  In Catville, Purrfessor Snap's photographs adorn the walls of
-                  homes and businesses alike, serving as cherished mementos of
-                  cherished moments shared with loved ones. Purrfessor Snap's
-                  photographs capture the essence of Catville, preserving
-                  memories that will be treasured for a lifetime.
+                  Courage the Canine Clicker, the town’s beloved photographer,
+                  has an eye for capturing the most heartwarming moments. His
+                  cozy gallery, adorned with playful backdrops and twinkling
+                  lights, is always bustling with wagging tails and joyful
+                  barks.
                 </p>
               </div>
               <span className={css.movieName}>
-                Purrfessor Snap
-                <span className={css.catName}>Town Photographer</span>
+                Courage the Canine Clicker
+                <span className={css.catName}>
+                  Town Photographer / Gallery Owner
+                </span>
               </span>
             </Link>
           </li>
@@ -85,20 +101,20 @@ export const Home = () => {
               <div className={css.catOverlay}>
                 <img
                   className={css.movieImage}
-                  src="https://i.pinimg.com/564x/34/0a/79/340a798b69db7d9273ffc1beec3d7201.jpg"
+                  src="https://i.pinimg.com/736x/a6/aa/2a/a6aa2a792c6fd769c4ebef223de23cca.jpg"
                   alt="Unavailable"
                 />
                 <p className={css.catDescription}>
-                  In Catville, Puss's name is whispered in awe and reverence,
-                  his deeds celebrated in song and story for generations to
-                  come. He is also a symbol of hope and resilience, reminding
-                  everyone that even the smallest among us can achieve greatness
-                  with courage and determination.
+                  Meet Scooby, the charismatic canine actor and proud owner of
+                  the town's beloved cinema. With his larger-than-life
+                  personality and infectious energy, Scooby brings glamour to
+                  the heart of our community. With Scooby at the helm, every
+                  movie night is an unforgettable adventure.
                 </p>
               </div>
               <span className={css.movieName}>
-                Puss
-                <span className={css.catName}>Town Hero / Actor</span>
+                Scooby
+                <span className={css.catName}>Cinema Owner / Actor</span>
               </span>
             </Link>
           </li>
@@ -107,20 +123,19 @@ export const Home = () => {
               <div className={css.catOverlay}>
                 <img
                   className={css.movieImage}
-                  src="https://i.pinimg.com/736x/e0/dc/8e/e0dc8e9a4c9ed00d4a6e360acd64dd1b.jpg"
+                  src="https://i.pinimg.com/564x/3a/85/f2/3a85f29f94dfa093d3b8bf1eef3eb1a8.jpg"
                   alt="Unavailable"
                 />
                 <p className={css.catDescription}>
-                  Garfeild embodies the essence of storytelling, bringing joy
-                  and wonder to all who witness his performances. From classic
-                  plays to original productions, Garfeild's versatility and
-                  dedication to his craft shines through in every role he
-                  undertakes.
+                  Introducing Krypto, the esteemed town hero whose courage knows
+                  no bounds, both on-screen and off. With a heart as pure as his
+                  gleaming fur, Krypto fearlessly protects our community from
+                  danger, earning him the title of our beloved guardian.
                 </p>
               </div>
               <span className={css.movieName}>
-                Garfeild
-                <span className={css.catName}>Cinema Owner / Actor</span>
+                Krypto
+                <span className={css.catName}>Town Hero / Actor</span>
               </span>
             </Link>
           </li>

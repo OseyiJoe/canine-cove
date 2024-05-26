@@ -17,20 +17,22 @@
   background-color: rgb(216, 155, 75);
   border-radius: 4px;
   box-shadow: 0 0.3em 1em #000;
-  border: 5px solid rgb(114, 17, 17);
-  background-image: url('./cats-relaxing-in-the-grounds-at-napsbury-louis-wain.jpg');
+  border: 5px solid #f1dbba;
+  background-image: url('https://i.pinimg.com/564x/82/e7/a9/82e7a97e01b5742b9c2ec504f9dca348.jpg');
   background-size:cover;
+  
 }
 
 
 .movieGalleryLabel {
   display: block;
   text-align: center;
-  padding: 8px;
+  padding: 10px;
   font-weight: 700;
-  font-size: 36px;
-  color: rgb(114, 17, 17);
-  font-family: 'Comic Sans MS';
+    font-size: 36px;
+    color: #f1dbba;
+    font-family: 'Comic Sans MS';
+    text-shadow: 3px 3px 20px rgb(114, 17, 17), 5px 5px 5px #000000;
 }
 
 .movieItem {

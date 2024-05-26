@@ -1,8 +1,8 @@
 .movieDetails {
-  background-color: rgb(216, 155, 75);
+  background-color: rgb(235, 144, 25);
   border-radius: 4px;
   box-shadow: 0 0.3em 1em #000;
-  border: 5px solid rgb(114, 17, 17);
+  border: 5px solid #f1dbba;
   padding: 30px;
   display: flex;
   flex-direction: column;
@@ -13,8 +13,8 @@
 }
 
 .movieFrame {
-  border: 3px solid rgb(114, 17, 17);
-  background-color: #f0d1a5;
+  background-color: rgb(240, 164, 65);
+    border: 3px solid #f1dbba;
   width: 400px;
   margin-bottom: 15px;
   display: flex;
@@ -29,12 +29,12 @@
 .movieImage {
   width: 100%;
   height: 500px;
-  border-bottom: 3px solid rgb(114, 17, 17);
+  border-bottom: 3px solid #f1dbba;
 }
 
 .movieOverview {
-  background-color: #f0d1a5;
-  border: 3px solid rgb(114, 17, 17);
+  background-color: rgb(240, 164, 65);
+    border: 3px solid #f1dbba;
   border-radius: 4px;
   padding: 5px;
   margin: 5px;
@@ -49,8 +49,8 @@
   justify-content: center;
   align-items: center;
   gap: 4px;
-  background-color: #f0d1a5;
-  border: 3px solid rgb(114, 17, 17);
+  background-color: rgb(240, 164, 65);
+  border: 3px solid #f1dbba;
   border-radius: 8px;
   padding: 5px;
   margin: 5px;
@@ -64,7 +64,7 @@
 }
 
 .movieLinks:hover {
-  background-color: rgb(216, 155, 75);
+  background-color: rgb(235, 144, 25);
   border: 1px solid rgb(114, 17, 17);
   border-radius: 4px;
 }
@@ -82,13 +82,13 @@
   align-items: center;
   border-radius: 50%;
   padding: 5px;
-  background-color: #f0d1a5;
+  background-color: rgb(240, 164, 65);
   fill: rgb(114, 17, 17);
   position: absolute;
   top: 10px;
   left: 10px;
   cursor: pointer;
-  border: 2px solid rgb(114, 17, 17);
+  border: 1px solid rgb(114, 17, 17);
 }
 
 .galleryFrame {
@@ -104,12 +104,12 @@
 }
 
 .playBtn{
-  background-color: rgb(216, 155, 75);
+  background-color: rgb(235, 144, 25);
   color: rgb(114, 17, 17);
   font-family: 'Comic Sans MS';
   font-weight: 700;
   cursor: pointer;
-  border: 2px solid rgb(114, 17, 17);
+  border: 1px solid rgb(114, 17, 17);
   border-radius: 4px;
   margin: 5px;
 }
@@ -130,8 +130,8 @@
 }
 
 .playerFrame{
-  background-color: #f0d1a5;
-  border: 2px solid rgb(114, 17, 17);
+  background-color: rgb(240, 164, 65);
+    border: 3px solid #f1dbba;
   border-radius: 4px;
   padding: 10px;
 }

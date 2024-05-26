@@ -78,7 +78,7 @@ export async function movieCastFinder(movieId) {
 }
 
 export function fetchBreeds() {
-  return fetch('https://api.thecatapi.com/v1/breeds', {
+  return fetch('https://api.thedogapi.com/v1/breeds', {
     method: 'GET',
     headers: {
       'x-api-key':
@@ -87,9 +87,9 @@ export function fetchBreeds() {
   });
 }
 
-export function fetchCatByBreed(identifier) {
+export function fetchDogByBreed(identifier) {
   return fetch(
-    `https://api.thecatapi.com/v1/images/search?breed_ids=${identifier}`,
+    `https://api.thedogapi.com/v1/images/search?breed_ids=${identifier}`,
     {
       method: 'GET',
       headers: {
@@ -101,8 +101,8 @@ export function fetchCatByBreed(identifier) {
 }
 
 
-export function fetchCatPics() {
-  return fetch('https://api.thecatapi.com/v1/images/search?limit=10', {
+export function fetchDogPics() {
+  return fetch('https://api.thedogapi.com/v1/images/search?limit=10', {
     method: 'GET',
     headers: {
       'x-api-key':
@@ -111,8 +111,8 @@ export function fetchCatPics() {
   });
 }
 
-export function fetchMoreCatPics(pages) {
-  return fetch(`https://api.thecatapi.com/v1/images/search?limit=10&pages=${pages}`,
+export function fetchMoreDogPics(pages) {
+  return fetch(`https://api.thedogapi.com/v1/images/search?limit=10&pages=${pages}`,
     {
       method: 'GET',
       headers: {

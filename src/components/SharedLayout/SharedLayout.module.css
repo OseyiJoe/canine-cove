@@ -21,7 +21,7 @@
 }
 
 .advertContainer{
-    width: 500px;
+    width: 300px;
     border:5px ridge rgb(114, 17, 17);
     background-color: rgb(240, 164, 65);
     padding: 10px;
@@ -35,6 +35,6 @@
   }
 
   100% {
-    transform: translatex(320px);
+    transform: translatex(120px);
   }
 }

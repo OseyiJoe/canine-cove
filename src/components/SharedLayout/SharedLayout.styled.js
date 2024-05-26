@@ -17,21 +17,21 @@ const spin = keyframes`
   }
 `;
 
-/*export const Sign = styled.div`
+export const Sign = styled.div`
   position: absolute;
-  top: -130%;
-  left: -5%;
+  top: -100%;
+  left: 4%;
   border-radius: 50%;
   border: 5px dotted rgb(114, 17, 17);
   animation-name: ${spin};
   animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
-  width: 120px;
-  height: 120px;
-`;*/
+  width: 100px;
+  height: 100px;
+`;
 
-export const Sign = styled.div`
+/*export const Sign = styled.div`
   position: absolute;
   top: -130%;
   left: -5%;
@@ -44,6 +44,7 @@ export const Sign = styled.div`
   width: 120px;
   height: 120px;
 `;
+*/
 
 
 export const Frame = styled.div`

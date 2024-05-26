@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/canine-cove/static/css/main.7e7a8f22.css",
-    "main.js": "/canine-cove/static/js/main.83d6e1f4.js",
+    "main.js": "/canine-cove/static/js/main.686c3f86.js",
     "static/css/433.43321b28.chunk.css": "/canine-cove/static/css/433.43321b28.chunk.css",
     "static/js/433.ca71261f.chunk.js": "/canine-cove/static/js/433.ca71261f.chunk.js",
     "static/css/512.c98a75b3.chunk.css": "/canine-cove/static/css/512.c98a75b3.chunk.css",
@@ -22,7 +22,7 @@
     "static/media/icons.svg": "/canine-cove/static/media/icons.77c8d2ef0bd65aab65a1e4f05688514c.svg",
     "index.html": "/canine-cove/index.html",
     "main.7e7a8f22.css.map": "/canine-cove/static/css/main.7e7a8f22.css.map",
-    "main.83d6e1f4.js.map": "/canine-cove/static/js/main.83d6e1f4.js.map",
+    "main.686c3f86.js.map": "/canine-cove/static/js/main.686c3f86.js.map",
     "433.43321b28.chunk.css.map": "/canine-cove/static/css/433.43321b28.chunk.css.map",
     "433.ca71261f.chunk.js.map": "/canine-cove/static/js/433.ca71261f.chunk.js.map",
     "512.c98a75b3.chunk.css.map": "/canine-cove/static/css/512.c98a75b3.chunk.css.map",
@@ -42,6 +42,6 @@
   },
   "entrypoints": [
     "static/css/main.7e7a8f22.css",
-    "static/js/main.83d6e1f4.js"
+    "static/js/main.686c3f86.js"
   ]
 }

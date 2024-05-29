@@ -43,13 +43,6 @@ font-weight: 700;
 }
 
 .movieGalleryIcon{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  fill:rgb(235, 144, 25);
-  stroke: rgb(114, 17, 17);
-  stroke-width: 1px;
   border: 5px solid #f1dbba;
   padding: 13px;
   border-radius: 4px;

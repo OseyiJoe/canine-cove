@@ -28,7 +28,7 @@ export const Home = () => {
         <Loader />
         <ul className={css.movieGallery}>
           <li key="townMayor" className={css.movieItem}>
-            <Link to="/" className={css.movieInfo}>
+            <Link to="/town_hall" className={css.movieInfo}>
               <div className={css.catOverlay}>
                 <img
                   className={css.movieImage}

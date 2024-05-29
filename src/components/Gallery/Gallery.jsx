@@ -5,6 +5,7 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 import { useEffect } from 'react';
 import { Button } from '../GalleryButton/Button';
 import { Loader } from '../GalleryLoader/Loader';
+import galleryImage from './gallery.png'
 
 export const Gallery = () => {
   const { catPics } = useUser();
@@ -25,8 +26,25 @@ export const Gallery = () => {
 
   return (
     <main>
-      <span className={css.movieGalleryLabel}>Welcome To Our Gallery</span>
-
+      <span className={css.titleContainer}>
+        <span className={css.iconContainer}>
+          <img
+            src={galleryImage}
+            className={css.icon}
+            style={{ width: '100px' }}
+            alt=""
+          />
+        </span>
+        <span className={css.movieGalleryLabel}>Welcome To Our Gallery</span>
+        <span className={css.iconContainer}>
+          <img
+            src={galleryImage}
+            className={css.iconTwo}
+            style={{ width: '100px' }}
+            alt=""
+          />
+        </span>
+      </span>
       <div className={css.galleryFrame}>
         <Loader />
         {catPics.length !== 0 && (

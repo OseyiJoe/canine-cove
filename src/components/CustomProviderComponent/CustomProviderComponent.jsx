@@ -12,12 +12,28 @@ import Recommendations from '../API/Recommendations';
 import { fetchBreeds } from '../API/Api';
 import { fetchDogByBreed } from '../API/Api';
 import Notiflix from 'notiflix';
+//import { selectVotes } from '../../redux/selectors';
+import { useDispatch} from 'react-redux';
+import { fetchVotes } from '../../redux/operations';
+
 
 const UserContext = createContext();
 
 export const useUser = () => useContext(UserContext);
 
+
 export const UserProvider = ({ children }) => {
+  const dispatch = useDispatch();
+  
+useEffect(() => {
+  dispatch(fetchVotes());
+}, [dispatch]);
+  
+  
+  
+  //const votes = useSelector(selectVotes);
+  //console.log(votes)
+
   const [myMovies, setMovies] = useState([]);
   const [catMovies, setCatMovies] = useState([...Recommendations]);
   const [filmName, setMovieName] = useState('%20');
@@ -45,6 +61,13 @@ export const UserProvider = ({ children }) => {
   const [catPageNums, setCatPageNums] = useState();
   const [galleryLoaded, setGalleryLoader] = useState();
 
+  
+  const options = ['Vote Scooby', 'Vote Goofy', 'Vote Brian'];
+  const message = 'No Votes Yet';
+
+
+  
+
   const clearingFilmName = () => {
     setMovieName('');
   };
@@ -67,6 +90,7 @@ export const UserProvider = ({ children }) => {
         setCatPageNums(1);
 
         //console.log(response);
+        
       })
       .catch(error => {
         //setLoadingStatus(false);
@@ -381,6 +405,9 @@ export const UserProvider = ({ children }) => {
         catPics,
         handleGalleryButtonPress,
         galleryLoaded,
+        options,
+        message,
+        
       }}
     >
       {children}

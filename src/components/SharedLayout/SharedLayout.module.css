@@ -15,7 +15,7 @@
   font-weight: 700;
   animation-direction: alternate;
   animation-name: move;
-  animation-duration: 5s;
+  animation-duration: 3s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }

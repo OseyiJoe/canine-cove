@@ -1,10 +1,60 @@
 import css from './Home.module.css';
 import { Link } from 'react-router-dom';
 import { Loader } from '../InitLoader/Loader';
-
+import { selectVotes } from '../../redux/selectors';
+import { useSelector } from 'react-redux';
+import { useUser } from '../CustomProviderComponent/CustomProviderComponent';
+import { useEffect } from 'react';
 
 export const Home = () => {
+
+  let {
+    countTotalFeedback,
+    scoobyWins,
+    goofyWins,
+    brianWins,
+    setScoobyWins,
+    setGoofyyWins,
+    setBrianWins,
+  } = useUser();
+
+  const votes = useSelector(selectVotes);
+
+  const total = countTotalFeedback(votes.Scooby, votes.Goofy, votes.Brian);
+
   
+  useEffect(() => {
+    if (
+      total === 50 &&
+      votes.Scooby > votes.Goofy &&
+      votes.Scooby > votes.Brian
+    ) {
+      setScoobyWins(true);
+      setGoofyyWins(false);
+      setBrianWins(false);
+    }
+
+    if (
+      total === 50 &&
+      votes.Goofy > votes.Scooby &&
+      votes.Goofy > votes.Brian
+    ) {
+      setScoobyWins(false);
+      setGoofyyWins(true);
+      setBrianWins(false);
+    }
+
+    if (
+      total === 50 &&
+      votes.Brian > votes.Goofy &&
+      votes.Brian > votes.Scooby
+    ) {
+      setScoobyWins(false);
+      setGoofyyWins(false);
+      setBrianWins(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [total]);
 
   return (
     <main>
@@ -28,26 +78,105 @@ export const Home = () => {
         <Loader />
         <ul className={css.movieGallery}>
           <li key="townMayor" className={css.movieItem}>
-            <Link to="/town_hall" className={css.movieInfo}>
-              <div className={css.catOverlay}>
-                <img
-                  className={css.movieImage}
-                  src="https://i.pinimg.com/736x/e7/9c/e0/e79ce05e10e609d9dd08ddb0f88abf27.jpg"
-                  alt="Unavailable"
-                />
-                <p className={css.catDescription}>
-                  Presenting Mayor Goofy, the dynamic leader of Canine-Cove, a
-                  radiant metropolis brimming with canine camaraderie. With a
-                  heart as boundless as the sunny skies above, Mayor Goofy, a
-                  former Army General, has dedicated himself to uplifting the
-                  spirits of his fellow residents.
-                </p>
-              </div>
-              <span className={css.movieName}>
-                Mayor Goofy
-                <span className={css.catName}>Town Mayor</span>
-              </span>
-            </Link>
+            {total < 50 && (
+              <Link to="/town_hall" className={css.movieInfo}>
+                <div className={css.catOverlay}>
+                  <img
+                    className={css.movieImage}
+                    src="https://i.pinimg.com/736x/e7/9c/e0/e79ce05e10e609d9dd08ddb0f88abf27.jpg"
+                    alt="Unavailable"
+                  />
+                  <p className={css.catDescription}>
+                    Presenting Mayor Goofy, the dynamic leader of Canine-Cove, a
+                    radiant metropolis brimming with canine camaraderie. With a
+                    heart as boundless as the sunny skies above, Mayor Goofy, a
+                    former Army General, has dedicated himself to uplifting the
+                    spirits of his fellow residents.
+                  </p>
+                </div>
+                <span className={css.movieName}>
+                  Mayor Goofy
+                  <span className={css.catName}>Current Town Mayor</span>
+                </span>
+              </Link>
+            )}
+
+            {goofyWins === true && (
+              <Link to="/town_hall" className={css.movieInfo}>
+                <div className={css.catOverlay}>
+                  <img
+                    className={css.movieImage}
+                    src="https://i.pinimg.com/736x/e7/9c/e0/e79ce05e10e609d9dd08ddb0f88abf27.jpg"
+                    alt="Unavailable"
+                  />
+                  <p className={css.catDescription}>
+                    Re-elected Mayor Goofy of Canine Cove is a beloved and
+                    charismatic leader known for his boundless energy and
+                    heartwarming dedication. With his signature goofy grin and a
+                    tail that never stops wagging, he's committed to making
+                    every corner of Canine Cove a happier, more tail-wagging
+                    place to live.
+                  </p>
+                </div>
+                <span className={css.movieName}>
+                  Mayor Goofy
+                  <span className={css.catName}>New Town Mayor</span>
+                </span>
+              </Link>
+            )}
+
+            {scoobyWins === true && (
+              <Link to="/town_hall" className={css.movieInfo}>
+                <div className={css.catOverlay}>
+                  <img
+                    className={css.movieImage}
+                    src="https://i.pinimg.com/736x/a6/aa/2a/a6aa2a792c6fd769c4ebef223de23cca.jpg"
+                    alt="Unavailable"
+                  />
+                  <p className={css.catDescription}>
+                    Newly elected Mayor Scooby of Canine Cove is a lovable,
+                    courageous leader with a nose for solving problems and a
+                    heart full of kindness. Mayor Scooby is dedicated to
+                    sniffing out new adventures and making Canine Cove the
+                    ultimate haven for all its furry residents.
+                  </p>
+                </div>
+                <span className={css.movieName}>
+                  Mayor Scooby
+                  <span className={css.catName}>
+                    {' '}
+                    New Town Mayor / Cinema Owner / Actor
+                  </span>
+                </span>
+              </Link>
+            )}
+
+            {brianWins === true && (
+              <Link to="/town_hall" className={css.movieInfo}>
+                <div className={css.catOverlay}>
+                  <img
+                    className={css.movieImage}
+                    src="https://i.pinimg.com/564x/99/ad/10/99ad1042ab520a579a99d35581f2785a.jpg"
+                    alt="Unavailable"
+                  />
+                  <p className={css.catDescription}>
+                    Newly elected Mayor Brian of Canine Cove is a sharp-witted,
+                    eloquent leader known for his sophistication and keen
+                    intellect. With his strategic mind,
+                    Mayor Brian is set to bring a touch of class and 
+                    innovation to Canine Cove, ensuring a bright future for all
+                    its furry citizens.
+                  </p>
+                </div>
+                <span className={css.movieName}>
+                  Mayor Brian
+                  <span className={css.catName}>
+                    {' '}
+                    New Town Mayor / Local Writer
+                  </span>
+                </span>
+              </Link>
+            )}
           </li>
 
           <li key="townLibrarian" className={css.movieItem}>

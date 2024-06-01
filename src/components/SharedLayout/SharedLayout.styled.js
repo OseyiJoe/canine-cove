@@ -88,6 +88,7 @@ export const Header = styled.header`
   background-color: rgb(235, 144, 25);
   border-radius: 4px;
   filter: drop-shadow(0px 8px 8px rgba(0, 0, 0, 0.3));
+  
 
   > nav {
     display: flex;

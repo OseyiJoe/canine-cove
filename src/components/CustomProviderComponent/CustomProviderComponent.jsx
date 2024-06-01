@@ -49,8 +49,8 @@ useEffect(() => {
   const [isOpen, setIsOpen] = useState();
   const [breedList, setBreedList] = useState([]);
   const [showCatInfo, setCatInfo] = useState();
-  const [catId, setCatId] = useState();
-  const [catImage, setCatImage] = useState([]);
+  //const [catId, setCatId] = useState();
+  //const [catImage, setCatImage] = useState([]);
   const [initLoaded, setInitLoader] = useState();
   const [resultsAmount, setResultsAmount] = useState();
   const [fewResponse, setResponseStatus] = useState();
@@ -60,13 +60,40 @@ useEffect(() => {
   const [catPics, setCatPics] = useState([]);
   const [catPageNums, setCatPageNums] = useState();
   const [galleryLoaded, setGalleryLoader] = useState();
+  const [toggleSign, setToggleSign] = useState();
+  let [chger, setChger] = useState(0);
+  let [scoobyWins, setScoobyWins] = useState(false);
+  let [goofyWins, setGoofyyWins] = useState(false);
+  let [brianWins, setBrianWins] = useState(false);
+  let [dogBreedId, setDogBreedId] = useState();
+  const [dogBreedInfo, setDogBreedInfo] = useState({});
+  const [dogImage, setDogImage] = useState();
+   const [dogId, setDogId] = useState();
 
-  
+     const countTotalFeedback = (good, neutral, bad) => {
+       return good + neutral + bad;
+     };
+
+     const countPositiveFeedbackPercentage = (good, neutral, bad, digit) => {
+       if (good === 0 && neutral === 0 && bad === 0) {
+         return 0;
+       } else {
+         return (digit / (good + neutral + bad)) * 100;
+       }
+     };
+   
+
+
   const options = ['Vote Scooby', 'Vote Goofy', 'Vote Brian'];
   const message = 'No Votes Yet';
 
+  const makingTrue = () => {
+    setToggleSign(true);
+  };
 
-  
+  const makingFalse = () => {
+    setToggleSign(false)
+  }
 
   const clearingFilmName = () => {
     setMovieName('');
@@ -195,9 +222,34 @@ useEffect(() => {
       });
   }, []);
 
+    useEffect(() => {
+      //setInitLoader(true);
+      fetchBreeds()
+        .then(response => {
+          if (!response.ok) {
+            /*loaderMsg.classList.add('hide');
+            errorMsg.classList.remove('hide');*/
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(response => {
+          //setBreedList([...response]);
+          const myObj = response.find(item => item.name === dogBreedId);
+          setDogBreedInfo({ ...myObj });
+          //setInitLoader(false);
+          //console.log(response.find(item => item.name === dogBreedId));
+          
+        })
+        .catch(error => {
+          //setInitLoader(false);
+          console.error(`Error message ${error}`);
+        });
+    }, [dogBreedId]);
+
   useEffect(() => {
     setLoadingStatus(true);
-    fetchDogByBreed(catId)
+    fetchDogByBreed(dogId)
       .then(response => {
         if (!response.ok) {
           /*loaderMsg.classList.add('hide');
@@ -208,15 +260,16 @@ useEffect(() => {
       })
       .then(response => {
         //setCatModal([...response[0].breeds]);
-        setCatImage(response[0].url);
-        console.log(response);
+        //setCatImage(response[0].url);
+        setDogImage(response[0].url);
+        //console.log(response);
         setLoadingStatus(false);
       })
       .catch(error => {
         setLoadingStatus(false);
         console.error(`Error message ${error}`);
       });
-  }, [catId]);
+  }, [dogId]);
 
   useEffect(() => {
     setLoadingStatus(true);
@@ -362,13 +415,18 @@ useEffect(() => {
   };
 
   const handleInfoClick = evt => {
-    setCatId(evt.currentTarget.dataset.id);
+    //setCatId(evt.currentTarget.dataset.id);
+    //setDogBreedId(Number(evt.currentTarget.dataset.id) - 1);
+    setDogBreedId(evt.currentTarget.dataset.id2);
+    //console.log(evt.currentTarget.dataset.id2);
+    setDogId(Number(evt.currentTarget.dataset.id1));
     setCatInfo(true);
-    console.log(evt.currentTarget.dataset.id);
+    //console.log(Number(evt.currentTarget.dataset.id) + 1);
   };
 
   const handleInfoClose = () => {
     setCatInfo(undefined);
+    setDogBreedInfo({});
     //setCatModal([]);
   };
 
@@ -395,7 +453,6 @@ useEffect(() => {
         showCatInfo,
         handleInfoClick,
         handleInfoClose,
-        catImage,
         setCatMovies,
         initLoaded,
         handleButtonPress,
@@ -407,7 +464,22 @@ useEffect(() => {
         galleryLoaded,
         options,
         message,
-        
+        toggleSign,
+        makingTrue,
+        makingFalse,
+        chger,
+        setChger,
+        setToggleSign,
+        countTotalFeedback,
+        countPositiveFeedbackPercentage,
+        scoobyWins,
+        setScoobyWins,
+        goofyWins,
+        setGoofyyWins,
+        brianWins,
+        setBrianWins,
+        dogBreedInfo,
+        dogImage,
       }}
     >
       {children}

@@ -4,7 +4,16 @@ import svg from '../SharedLayout/icons.svg';
 import { Loader } from '../Loader/Loader';
 
 export const LibraryModal = () => {
-  const { catImage, handleInfoClose, showCatInfo, isLoading } = useUser();
+  const {
+    handleInfoClose,
+    showCatInfo,
+    isLoading,
+    dogBreedInfo,
+    dogImage,
+  } = useUser();
+
+  //console.log(dogBreedInfo);
+  
 
   return (
     <>
@@ -19,19 +28,38 @@ export const LibraryModal = () => {
             <Loader />
             {isLoading === false && (
               <div className={css.modal}>
-                
-                  <>
-                    <div>
-                      <img
-                        src={catImage}
-                        alt="Cat Type"
-                        height="500px"
-                        className={css.catImage}
-                      />
+                <div>
+                  <img
+                    src={dogImage}
+                    alt="Cat Type"
+                    height="200px"
+                    className={css.catImage}
+                  />
+                  {/*dogBreedInfo.name*/}
+                </div>
+                <div className={css.dogDetails}>
+                  <div className={css.dogDetailsInfo}>
+                    <h3 className={css.dogInfoHeader}>{dogBreedInfo.name}</h3>
+                  </div>
+                  {dogBreedInfo.origin && (
+                    <div className={css.dogDetailsInfo}>
+                      <h3 className={css.dogInfo}>Origin</h3>
+                      <p className={css.dogInfo}>{dogBreedInfo.origin}</p>
                     </div>
-                   
-                  </>
-              
+                  )}
+                  {dogBreedInfo.life_span && (
+                    <div className={css.dogDetailsInfo}>
+                      <h3 className={css.dogInfo}>Life Span</h3>
+                      <p className={css.dogInfo}>{dogBreedInfo.life_span}</p>
+                    </div>
+                  )}
+                  {dogBreedInfo.temperament && (
+                    <div className={css.dogDetailsInfo}>
+                      <h3 className={css.dogInfo}>Temperament</h3>
+                      <p className={css.dogInfo}>{dogBreedInfo.temperament}</p>
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           </div>

@@ -18,7 +18,7 @@ export const TownHall = () => {
             alt=""
           />
         </span>
-        <span className={css.title}>Please Cast Your Vote</span>
+        <span className={css.title}>Welcome to our Town Hall</span>
         <span className={css.iconContainer}>
           <img
             src={buildingImage}

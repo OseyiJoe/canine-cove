@@ -40,7 +40,8 @@ export const Library = () => {
               <li
                 key={breed.id}
                 className={css.movieItem}
-                data-id={breed.id}
+                data-id1={breed.id}
+                data-id2={breed.name}
                 onClick={handleInfoClick}
               >
                 {breed.name}

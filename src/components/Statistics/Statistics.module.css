@@ -16,6 +16,7 @@
     text-shadow: 3px 3px 20px #721111, 5px 5px 5px #000;
 }
 
+
 .stats{
     /*
     display: flex;
@@ -24,6 +25,8 @@
     */
 
     /*width: 410px;*/
+    color:rgb(114, 17, 17);
+    font-weight: 700;
     margin-left: auto;
     margin-right: auto;
     background-color: rgb(235, 144, 25);
@@ -50,4 +53,48 @@
     align-items: center;
     justify-content:center;
     margin: 10px;
+    padding: 5px;
+    background-color: rgb(240, 164, 65);
+    border: 3px solid rgb(114, 17, 17);
+    border-radius: 5px;
+    gap:8px;
+}
+
+.statsResult{
+    padding: 5px;
+    background-color: rgb(240, 164, 65);
+    border: 3px solid rgb(114, 17, 17);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.statsImage{
+    padding: 8px;
+    background-color: rgb(240, 164, 65);
+    border: 3px solid rgb(114, 17, 17);
+    margin: 5px;
+    border-radius: 50%;
+}
+
+.statsImageItem{
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid rgb(114, 17, 17);
+}
+
+
+.statsInfoItem{
+    background-color: rgb(235, 144, 25);
+    border: 1px solid rgb(114, 17, 17);
+    border-radius: 4px;
+    padding: 2px;
+}
+
+.statsPercent{
+    display: flex;
+    align-items:center;
+    justify-content:space-around;
+    width: 100%;
 }

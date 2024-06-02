@@ -18,3 +18,8 @@
   font-size: 16px;
   font-weight: 700;
 }
+
+.loadBtn:hover {
+  color: white;
+  background-color: rgb(114, 17, 17);
+}

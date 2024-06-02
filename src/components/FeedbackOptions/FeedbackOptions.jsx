@@ -169,32 +169,35 @@ export const FeedbackOptions = () => {
           </div>
         </div>
       </div>
-      {total < 50 && (
+
+      <div className={css.movieItemCover}>
+        {total === 50 && <div className={css.cover}></div>}
         <div className={css.buttonBoxContainer}>
-          {total < 50 && (
-            <div className={css.buttonBox}>
-              {options.map(option => (
-                <button
-                  className={css.button}
-                  type="button"
-                  name={option}
-                  data-votes={JSON.stringify(votes)}
-                  onClick={onVote}
-                  key={options.indexOf(option)}
-                  disabled={JSON.parse(localStorage.getItem('hasVoted'))}
-                >
-                  {option}
-                </button>
-              ))}
-            </div>
-          )}
+          <div className={css.buttonBox}>
+            {options.map(option => (
+              <button
+                className={css.button}
+                type="button"
+                name={option}
+                data-votes={JSON.stringify(votes)}
+                onClick={onVote}
+                key={options.indexOf(option)}
+                disabled={JSON.parse(localStorage.getItem('hasVoted'))}
+              >
+                {option}
+              </button>
+            ))}
+          </div>
 
           <p className={css.rulesHeader}>Election Rules</p>
           <ul className={css.rulesList}>
-            <li className={css.rulesListItem}>When the total number of votes gets to 50, the candidate with the highest number of votes wins.</li>
+            <li className={css.rulesListItem}>
+              When the total number of votes gets to 50, the candidate with the
+              highest number of votes wins.
+            </li>
           </ul>
         </div>
-      )}
+      </div>
     </>
   );
 };

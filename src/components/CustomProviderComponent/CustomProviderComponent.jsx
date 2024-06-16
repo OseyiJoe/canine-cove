@@ -263,7 +263,8 @@ useEffect(() => {
         //setCatImage(response[0].url);
         setDogImage(response[0].url);
         //console.log(response);
-        setLoadingStatus(false);
+        setTimeout(() => { setLoadingStatus(false) }, 500);
+        
       })
       .catch(error => {
         setLoadingStatus(false);
@@ -426,7 +427,10 @@ useEffect(() => {
 
   const handleInfoClose = () => {
     setCatInfo(undefined);
-    setDogBreedInfo({});
+     //setDogBreedId();
+    //setDogId();
+    //setDogImage();
+    //setDogBreedInfo({});
     //setCatModal([]);
   };
 

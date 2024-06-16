@@ -31,7 +31,7 @@ export const LibraryModal = () => {
                 <div>
                   <img
                     src={dogImage}
-                    alt="Cat Type"
+                    alt="Dog Type"
                     height="200px"
                     className={css.catImage}
                   />

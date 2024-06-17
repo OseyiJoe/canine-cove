@@ -263,7 +263,7 @@ useEffect(() => {
         //setCatImage(response[0].url);
         setDogImage(response[0].url);
         //console.log(response);
-        setTimeout(() => { setLoadingStatus(false) }, 500);
+        setTimeout(() => { setLoadingStatus(false) }, 1500);
         
       })
       .catch(error => {

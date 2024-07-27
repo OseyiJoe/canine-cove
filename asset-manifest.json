@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/canine-cove/static/css/main.94a2ee11.css",
-    "main.js": "/canine-cove/static/js/main.9568101f.js",
+    "main.js": "/canine-cove/static/js/main.e94926b0.js",
     "static/css/433.43321b28.chunk.css": "/canine-cove/static/css/433.43321b28.chunk.css",
     "static/js/433.77b4edd2.chunk.js": "/canine-cove/static/js/433.77b4edd2.chunk.js",
     "static/css/512.d1078a9a.chunk.css": "/canine-cove/static/css/512.d1078a9a.chunk.css",
     "static/js/512.3cbdaefc.chunk.js": "/canine-cove/static/js/512.3cbdaefc.chunk.js",
-    "static/css/76.0124a434.chunk.css": "/canine-cove/static/css/76.0124a434.chunk.css",
+    "static/css/76.f0697acf.chunk.css": "/canine-cove/static/css/76.f0697acf.chunk.css",
     "static/js/76.9e00ca35.chunk.js": "/canine-cove/static/js/76.9e00ca35.chunk.js",
-    "static/css/168.db61bdb1.chunk.css": "/canine-cove/static/css/168.db61bdb1.chunk.css",
+    "static/css/168.15270112.chunk.css": "/canine-cove/static/css/168.15270112.chunk.css",
     "static/js/168.c7b9d7f6.chunk.js": "/canine-cove/static/js/168.c7b9d7f6.chunk.js",
     "static/css/320.e8bc1ace.chunk.css": "/canine-cove/static/css/320.e8bc1ace.chunk.css",
     "static/js/320.bb37d6ef.chunk.js": "/canine-cove/static/js/320.bb37d6ef.chunk.js",
@@ -26,14 +26,14 @@
     "static/media/icons.svg": "/canine-cove/static/media/icons.77c8d2ef0bd65aab65a1e4f05688514c.svg",
     "index.html": "/canine-cove/index.html",
     "main.94a2ee11.css.map": "/canine-cove/static/css/main.94a2ee11.css.map",
-    "main.9568101f.js.map": "/canine-cove/static/js/main.9568101f.js.map",
+    "main.e94926b0.js.map": "/canine-cove/static/js/main.e94926b0.js.map",
     "433.43321b28.chunk.css.map": "/canine-cove/static/css/433.43321b28.chunk.css.map",
     "433.77b4edd2.chunk.js.map": "/canine-cove/static/js/433.77b4edd2.chunk.js.map",
     "512.d1078a9a.chunk.css.map": "/canine-cove/static/css/512.d1078a9a.chunk.css.map",
     "512.3cbdaefc.chunk.js.map": "/canine-cove/static/js/512.3cbdaefc.chunk.js.map",
-    "76.0124a434.chunk.css.map": "/canine-cove/static/css/76.0124a434.chunk.css.map",
+    "76.f0697acf.chunk.css.map": "/canine-cove/static/css/76.f0697acf.chunk.css.map",
     "76.9e00ca35.chunk.js.map": "/canine-cove/static/js/76.9e00ca35.chunk.js.map",
-    "168.db61bdb1.chunk.css.map": "/canine-cove/static/css/168.db61bdb1.chunk.css.map",
+    "168.15270112.chunk.css.map": "/canine-cove/static/css/168.15270112.chunk.css.map",
     "168.c7b9d7f6.chunk.js.map": "/canine-cove/static/js/168.c7b9d7f6.chunk.js.map",
     "320.e8bc1ace.chunk.css.map": "/canine-cove/static/css/320.e8bc1ace.chunk.css.map",
     "320.bb37d6ef.chunk.js.map": "/canine-cove/static/js/320.bb37d6ef.chunk.js.map",
@@ -48,6 +48,6 @@
   },
   "entrypoints": [
     "static/css/main.94a2ee11.css",
-    "static/js/main.9568101f.js"
+    "static/js/main.e94926b0.js"
   ]
 }

@@ -102,7 +102,7 @@ export const Cinema = () => {
             ))}
           </ul>
         ) : (
-          isLoading === false && <div>No Movies Found</div>
+          movieName !== '' && isLoading === false && <div>No Movies Found</div>
         )}
       </div>
       <Button />

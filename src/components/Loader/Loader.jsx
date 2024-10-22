@@ -1,22 +1,20 @@
-
+import { useUser } from '../CustomProviderComponent/CustomProviderComponent';
 import { ThreeCircles } from 'react-loader-spinner';
 import css from './Loader.module.css';
-import {selectFullLoading} from '../../redux/Application/selectors';
-import { useSelector } from 'react-redux';
 
 
-export const FullLoader = () => {
-  const ifFullLoading = useSelector(selectFullLoading);
+export const Loader = () => {
+  const { isLoading } = useUser();
 
   return (
     <>
-      {ifFullLoading && (
+      {isLoading && (
         <div className={css.backDrop}>
           <ThreeCircles
             visible={true}
             height="80"
             width="80"
-            color="blue"
+            color="rgb(235, 144, 25)"
             radius="9"
             ariaLabel="three-dots-loading"
             wrapperStyle={{}}

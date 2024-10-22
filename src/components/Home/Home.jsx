@@ -1,279 +1,274 @@
 import css from './Home.module.css';
-import { Link } from 'react-router-dom';
 import { Loader } from '../InitLoader/Loader';
-import { selectVotes } from '../../redux/selectors';
-import { useSelector } from 'react-redux';
-import { useUser } from '../CustomProviderComponent/CustomProviderComponent';
+import play from './play.png';
+import {
+  selectPopularVideos,
+  selectMyKey,
+  selectOpenModal,
+  selectOpenKeyModal,
+  selectMyKeyName,
+  selectMyKeyId,
+} from '../../redux/Application/selectors';
+import { FullLoader } from '../Loader/Loader';
+import {
+  saveVideos,
+  fetchMorePopularVideos,
+  createKey,
+  retrieveKey,
+  openModal,
+  closeModal,
+  openKeyModal,
+  closeKeyModal,
+} from '../../redux/Application/operations';
+import { selectUser } from '../../redux/Auth/selectors';
+import { Fancybox } from '@fancyapps/ui';
+import '@fancyapps/ui/dist/fancybox/fancybox.css';
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import svg from '../SharedLayout/icons.svg';
 
 export const Home = () => {
+  const dispatch = useDispatch();
+  const userName = useSelector(selectUser);
+  const isOpenModal = useSelector(selectOpenModal);
+  const isOpenKeyModal = useSelector(selectOpenKeyModal);
+  const popularVideos = useSelector(selectPopularVideos);
+  const myKey = useSelector(selectMyKey);
+  const myKeyName = useSelector(selectMyKeyName);
+  const myKeyId = useSelector(selectMyKeyId);
+  
+    const handlePress = (videoFiles, evt) => {
+      evt.target.style.boxShadow = 'inset 0 0 10px 5px rgba(0, 0, 0, 0.3)';
 
-  let {
-    countTotalFeedback,
-    scoobyWins,
-    goofyWins,
-    brianWins,
-    setScoobyWins,
-    setGoofyyWins,
-    setBrianWins,
-  } = useUser();
+      setTimeout(() => {
+        evt.target.style.boxShadow = 'none';
+      }, 2000);
 
-  const votes = useSelector(selectVotes);
+      console.log(videoFiles); // Log the array of video files
 
-  const total = countTotalFeedback(votes.Scooby, votes.Goofy, votes.Brian);
+      dispatch(saveVideos({ video_files: videoFiles }));
+  };
+  
+  const handleButtonPress = (evt) => {
+    evt.target.style.boxShadow = 'inset 0 0 10px 5px rgba(0, 0, 0, 0.3)';
 
+    setTimeout(() => {
+      evt.target.style.boxShadow = 'none';
+    }, 2000);
+    dispatch(fetchMorePopularVideos());
+  }
+
+  const handleSubmit = (e) => {
+ e.preventDefault();
+ const form = e.currentTarget;
+ dispatch(
+   createKey({
+     name: form.elements.name.value,
+     customMETAData: form.elements.customMetaData.value,
+     customAccountId: form.elements.customAccountId.value,
+   })
+ );
+  }
+
+  const handleModalOpen = () => {
+    dispatch(openModal())
+    console.log(isOpenModal);
+  }
+
+  const handleModalClose = () => {
+    dispatch(closeModal());
+    console.log(isOpenModal);
+  };
+
+  const handleKeyModalOpen = () => {
+    dispatch(openKeyModal());
+  };
+
+  const handleKeyModalClose = () => {
+    dispatch(closeKeyModal());
+  };
+
+ 
+    useEffect(() => {
+      Fancybox.bind("[data-fancybox='gallery']", {
+        // Custom options
+      });
+
+      // Cleanup function
+      return () => {
+        Fancybox.destroy();
+      };
+    }, [popularVideos]);
   
   useEffect(() => {
-    if (
-      total === 50 &&
-      votes.Scooby > votes.Goofy &&
-      votes.Scooby > votes.Brian
-    ) {
-      setScoobyWins(true);
-      setGoofyyWins(false);
-      setBrianWins(false);
-    }
+      dispatch(retrieveKey());
+      //dispatch(fetchPopularVideos());
+    }, [dispatch]); 
 
-    if (
-      total === 50 &&
-      votes.Goofy > votes.Scooby &&
-      votes.Goofy > votes.Brian
-    ) {
-      setScoobyWins(false);
-      setGoofyyWins(true);
-      setBrianWins(false);
-    }
-
-    if (
-      total === 50 &&
-      votes.Brian > votes.Goofy &&
-      votes.Brian > votes.Scooby
-    ) {
-      setScoobyWins(false);
-      setGoofyyWins(false);
-      setBrianWins(true);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [total]);
+  //const ifLoggedIn = useSelector(selectIfLoggedIn);
+  //const ifRegisteredIn = useSelector(selectIfRegistered);
 
   return (
-    <main>
+    <div>
+      <FullLoader />
       <span className={css.movieGalleryLabel}>
         <img
-          src="https://cdn-icons-png.flaticon.com/512/869/869869.png"
-          alt="Sun"
+          src={play}
+          alt="Play"
           width="100"
           className={css.movieGalleryAnimation}
         />
-        <span className={css.movieGalleryTitle}>Welcome To Dog Town</span>
+        <div className={css.headerWrapper}>
+          <span className={css.headerLabel}>Hello, {userName.name}</span>
+          <span className={css.movieGalleryTitle}>Trending Videos</span>
+          {myKey === null && (
+            <span className={css.genWrapper}>
+              <span className={css.genLabel}>For more access</span>
+              <button className={css.genButton} onClick={handleModalOpen}>
+                CREATE KEY
+              </button>
+            </span>
+          )}
+          {isOpenModal === true && (
+            <div className={css.overlay}>
+              <button className={css.closeModal} onClick={handleModalClose}>
+                <svg width="20px" height="20px" className={css.modalIcon}>
+                  <use href={`${svg}#icon-cross`}></use>
+                </svg>
+              </button>
+              <div className={css.login}>
+                <div>
+                  <div className={css.formContainer}>
+                    <form
+                      className={css.form}
+                      onSubmit={handleSubmit}
+                      autoComplete="off"
+                    >
+                      <label className={css.label}>
+                        KEY NAME
+                        <input
+                          type="text"
+                          name="name"
+                          className={css.input}
+                          required
+                        />
+                      </label>
+                      <label className={css.label}>
+                        CUSTOM ACCOUNT ID
+                        <input
+                          type="text"
+                          name="customAccountId"
+                          className={css.input}
+                          required
+                        />
+                      </label>
+                      <label className={css.label}>
+                        CUSTOM META DATA
+                        <input
+                          type="text"
+                          name="customMetaData"
+                          className={css.input}
+                          required
+                        />
+                      </label>
+                      <button
+                        className={css.inputButton}
+                        name="button"
+                        type="submit"
+                      >
+                        CREATE A KEY
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          {myKey !== null && (
+            <div>
+              {console.log(myKey)}
+              <span className={css.genWrapper}>
+                <span className={css.genLabel}>To View KEY details</span>
+                <button className={css.genButton} onClick={handleKeyModalOpen}>
+                  CLICK HERE
+                </button>
+              </span>
+            </div>
+          )}
+          {isOpenKeyModal === true && (
+            <div className={css.overlay}>
+              <button className={css.closeModal} onClick={handleKeyModalClose}>
+                <svg width="20px" height="20px" className={css.modalIcon}>
+                  <use href={`${svg}#icon-cross`}></use>
+                </svg>
+              </button>
+              <table className={css.transactionHistory}>
+                <thead>
+                  <tr>
+                    <th>KEY NAME</th>
+                    <th>KEY</th>
+                    <th>KEY ID</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>{myKeyName}</td>
+                    <td>{myKey}</td>
+                    <td>{myKeyId}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
         <img
-          src="https://cdn-icons-png.flaticon.com/512/869/869869.png"
-          alt="Sun"
+          src={play}
+          alt="Play"
           width="100"
           className={css.movieGalleryAnimation}
         />
       </span>
-      <h3 className={css.townOfficialsIntro}>Get to know our town Officials</h3>
       <div className={css.galleryFrame}>
         <Loader />
-        <ul className={css.movieGallery}>
-          <li key="townMayor" className={css.movieItem}>
-            {total < 50 && (
-              <Link to="/town_hall" className={css.movieInfo}>
-                <div className={css.catOverlay}>
-                  <img
+        {popularVideos.length !== 0 && (
+          <ul className={`${css.movieGallery} gallery`}>
+            {popularVideos.map(popularVideo => (
+              <li
+                key={popularVideo.video_files[2].id}
+                className={css.movieItem}
+              >
+                <a
+                  href={popularVideo.video_files[0].link}
+                  data-fancybox="gallery"
+                >
+                  <video
                     className={css.movieImage}
-                    src="https://i.pinimg.com/736x/e7/9c/e0/e79ce05e10e609d9dd08ddb0f88abf27.jpg"
-                    alt="Unavailable"
-                  />
-                  <p className={css.catDescription}>
-                    Presenting Mayor Goofy, the dynamic leader of Canine-Cove, a
-                    radiant metropolis brimming with canine camaraderie. With a
-                    heart as boundless as the sunny skies above, Mayor Goofy, a
-                    former Army General, has dedicated himself to uplifting the
-                    spirits of his fellow residents.
-                  </p>
-                </div>
-                <span className={css.movieName}>
-                  Mayor Goofy
-                  <span className={css.catName}>Current Town Mayor</span>
-                </span>
-              </Link>
-            )}
-
-            {goofyWins === true && (
-              <Link to="/town_hall" className={css.movieInfo}>
-                <div className={css.catOverlay}>
-                  <img
-                    className={css.movieImage}
-                    src="https://i.pinimg.com/736x/e7/9c/e0/e79ce05e10e609d9dd08ddb0f88abf27.jpg"
-                    alt="Unavailable"
-                  />
-                  <p className={css.catDescription}>
-                    Re-elected Mayor Goofy of Canine Cove is a beloved and
-                    charismatic leader known for his boundless energy and
-                    heartwarming dedication. With his signature goofy grin and a
-                    tail that never stops wagging, he's committed to making
-                    every corner of Canine Cove a happier, more tail-wagging
-                    place to live.
-                  </p>
-                </div>
-                <span className={css.movieName}>
-                  Mayor Goofy
-                  <span className={css.catName}>New Town Mayor</span>
-                </span>
-              </Link>
-            )}
-
-            {scoobyWins === true && (
-              <Link to="/town_hall" className={css.movieInfo}>
-                <div className={css.catOverlay}>
-                  <img
-                    className={css.movieImage}
-                    src="https://i.pinimg.com/736x/a6/aa/2a/a6aa2a792c6fd769c4ebef223de23cca.jpg"
-                    alt="Unavailable"
-                  />
-                  <p className={css.catDescription}>
-                    Newly elected Mayor Scooby of Canine Cove is a lovable,
-                    courageous leader with a nose for solving problems and a
-                    heart full of kindness. Mayor Scooby is dedicated to
-                    sniffing out new adventures and making Canine Cove the
-                    ultimate haven for all its furry residents.
-                  </p>
-                </div>
-                <span className={css.movieName}>
-                  Mayor Scooby
-                  <span className={css.catName}>
-                    {' '}
-                    New Town Mayor / Cinema Owner / Actor
-                  </span>
-                </span>
-              </Link>
-            )}
-
-            {brianWins === true && (
-              <Link to="/town_hall" className={css.movieInfo}>
-                <div className={css.catOverlay}>
-                  <img
-                    className={css.movieImage}
-                    src="https://i.pinimg.com/564x/99/ad/10/99ad1042ab520a579a99d35581f2785a.jpg"
-                    alt="Unavailable"
-                  />
-                  <p className={css.catDescription}>
-                    Newly elected Mayor Brian of Canine Cove is a sharp-witted,
-                    eloquent leader known for his sophistication and keen
-                    intellect. With his strategic mind,
-                    Mayor Brian is set to bring a touch of class and 
-                    innovation to Canine Cove, ensuring a bright future for all
-                    its furry citizens.
-                  </p>
-                </div>
-                <span className={css.movieName}>
-                  Mayor Brian
-                  <span className={css.catName}>
-                    {' '}
-                    New Town Mayor / Local Writer
-                  </span>
-                </span>
-              </Link>
-            )}
-          </li>
-
-          <li key="townLibrarian" className={css.movieItem}>
-            <Link to="/Library" className={css.movieInfo}>
-              <div className={css.catOverlay}>
-                <img
-                  className={css.movieImage}
-                  src="https://i.pinimg.com/736x/ed/bf/ad/edbfade1923c96e542899a2e921d4cea.jpg"
-                  alt="Unavailable"
-                />
-                <p className={css.catDescription}>
-                  Mr. Snoopy, with his boundless energy and infectious
-                  enthusiasm, has transformed the town's library into a vibrant
-                  hub of activity. Every corner bursts with color and
-                  creativity, from the whimsical reading nooks to the
-                  interactive storytelling corners.
-                </p>
-              </div>
-              <span className={css.movieName}>
-                Mr Snoopy
-                <span className={css.catName}>Town Librarian</span>
-              </span>
-            </Link>
-          </li>
-          <li key="townPhotographer" className={css.movieItem}>
-            <Link to="/gallery" className={css.movieInfo}>
-              <div className={css.catOverlay}>
-                <img
-                  className={css.movieImage}
-                  src="https://i.pinimg.com/564x/18/82/b8/1882b847e754337bc00b03ab93354252.jpg"
-                  alt="Unavailable"
-                />
-                <p className={css.catDescription}>
-                  Courage the Canine Clicker, the town’s beloved photographer,
-                  has an eye for capturing the most heartwarming moments. His
-                  cozy gallery, adorned with playful backdrops and twinkling
-                  lights, is always bustling with wagging tails and joyful
-                  barks.
-                </p>
-              </div>
-              <span className={css.movieName}>
-                Courage the Canine Clicker
-                <span className={css.catName}>
-                  Town Photographer / Gallery Owner
-                </span>
-              </span>
-            </Link>
-          </li>
-          <li key="townHero" className={css.movieItem}>
-            <Link to="/cinema" className={css.movieInfo}>
-              <div className={css.catOverlay}>
-                <img
-                  className={css.movieImage}
-                  src="https://i.pinimg.com/736x/a6/aa/2a/a6aa2a792c6fd769c4ebef223de23cca.jpg"
-                  alt="Unavailable"
-                />
-                <p className={css.catDescription}>
-                  Meet Scooby, the charismatic canine actor and proud owner of
-                  the town's beloved cinema. With his larger-than-life
-                  personality and infectious energy, Scooby brings glamour to
-                  the heart of our community. With Scooby at the helm, every
-                  movie night is an unforgettable adventure.
-                </p>
-              </div>
-              <span className={css.movieName}>
-                Scooby
-                <span className={css.catName}>Cinema Owner / Actor</span>
-              </span>
-            </Link>
-          </li>
-          <li key="townCinemaOwner" className={css.movieItem}>
-            <Link to="/cinema" className={css.movieInfo}>
-              <div className={css.catOverlay}>
-                <img
-                  className={css.movieImage}
-                  src="https://i.pinimg.com/564x/3a/85/f2/3a85f29f94dfa093d3b8bf1eef3eb1a8.jpg"
-                  alt="Unavailable"
-                />
-                <p className={css.catDescription}>
-                  Introducing Krypto, the esteemed town hero whose courage knows
-                  no bounds, both on-screen and off. With a heart as pure as his
-                  gleaming fur, Krypto fearlessly protects our community from
-                  danger, earning him the title of our beloved guardian.
-                </p>
-              </div>
-              <span className={css.movieName}>
-                Krypto
-                <span className={css.catName}>Town Hero / Actor</span>
-              </span>
-            </Link>
-          </li>
-        </ul>
+                    src={popularVideo.video_files[2].link}
+                    controls
+                  ></video>
+                </a>
+                <button
+                  className={css.liker}
+                  onClick={evt => handlePress(popularVideo.video_files, evt)}
+                >
+                  Save
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
-    </main>
+      <div className={css.buttonWrapper}>
+        {popularVideos.length !== 0 ? (
+          <button onClick={handleButtonPress} className={css.loadBtn}>
+            Load More
+          </button>
+        ) : null}
+      </div>
+    </div>
   );
 };
-
-
 
 export default Home;
